@@ -45,13 +45,13 @@ class PersonController {
     personCourseService.gradeStudent(degreeDTO);
   }
 
-  @PostMapping("/Id/paper")
+  @PostMapping("/{Id}/paper")
   @Operation(summary = "Add paper to tutor")
   public PersonDTO addPaper(@PathVariable Long Id, @RequestBody PaperDTO paperDTO) {
     return personService.addPaper(Id, paperDTO);
   }
 
-  @DeleteMapping("/{personId}/papers/paperId")
+  @DeleteMapping("/{personId}/papers/{paperId}")
   @Operation(summary = "Remove paper from tutor")
   public PersonDTO removePaper(
           @PathVariable Long personId,
