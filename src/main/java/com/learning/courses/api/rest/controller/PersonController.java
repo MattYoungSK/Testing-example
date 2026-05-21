@@ -2,6 +2,7 @@ package com.learning.courses.api.rest.controller;
 
 import com.learning.courses.dto.CreatePersonDTO;
 import com.learning.courses.dto.DegreeDTO;
+import com.learning.courses.dto.PaperDTO;
 import com.learning.courses.dto.PersonDTO;
 import com.learning.courses.service.PersonCourseService;
 import com.learning.courses.service.PersonService;
@@ -42,6 +43,21 @@ class PersonController {
   @Operation(summary = "Grade a student")
   public void gradeStudent(@RequestBody @Valid DegreeDTO degreeDTO) {
     personCourseService.gradeStudent(degreeDTO);
+  }
+
+  @PostMapping("/{Id}/paper")
+  @Operation(summary = "Add paper to tutor")
+  public PersonDTO addPaper(@PathVariable Long Id, @RequestBody PaperDTO paperDTO) {
+    return personService.addPaper(Id, paperDTO);
+  }
+
+  @DeleteMapping("/{personId}/papers/{paperId}")
+  @Operation(summary = "Remove paper from tutor")
+  public PersonDTO removePaper(
+          @PathVariable Long personId,
+          @PathVariable Long paperId
+  ) {
+    return personService.removePaper(personId, paperId);
   }
 
 }
